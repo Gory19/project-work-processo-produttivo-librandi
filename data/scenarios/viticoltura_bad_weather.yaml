@@ -1,0 +1,61 @@
+scenario_name: "Azienda vinicola Librandi - Maltempo persistente"
+units:
+  quantity: "kg"
+  time: "minutes"
+
+global_capacity:
+  max_minutes_per_day: 480
+
+weather:
+  mode: "fixed_bad"
+  good_multiplier: 1.0
+  bad_multiplier: 1.35
+
+products:
+  - id: "uva_greco_bianco"
+    label: "Uva Greco Bianco"
+    daily_capacity_qty: 6000
+    time_per_unit: 0.05
+    random_qty:
+      min: 2000
+      max: 9000
+
+  - id: "uva_gaglioppo"
+    label: "Uva Gaglioppo"
+    daily_capacity_qty: 5000
+    time_per_unit: 0.055
+    random_qty:
+      min: 1500
+      max: 8000
+
+  - id: "uva_magliocco"
+    label: "Uva Magliocco"
+    daily_capacity_qty: 7000
+    time_per_unit: 0.045
+    random_qty:
+      min: 2500
+      max: 10000
+
+sequences:
+  - id: "raccolta"
+    label: "Raccolta e conferimento"
+    steps:
+      - id: "vendemmia"
+        label: "Vendemmia"
+        multiplier_time: 1.0
+      - id: "trasporto"
+        label: "Trasporto in cantina"
+        fixed_time_minutes: 60
+
+  - id: "vinificazione"
+    label: "Vinificazione base"
+    steps:
+      - id: "diraspatura_pigiatura"
+        label: "Diraspatura e pigiatura"
+        multiplier_time: 0.6
+      - id: "pressatura"
+        label: "Pressatura"
+        multiplier_time: 0.4
+      - id: "pulizia"
+        label: "Pulizia impianti"
+        fixed_time_minutes: 90
